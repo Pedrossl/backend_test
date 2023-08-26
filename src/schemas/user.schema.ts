@@ -11,6 +11,10 @@ export class UserSchema {
   email: string;
 
   @IsString()
-  @MaxLength(50)
+  @MaxLength(500)
   password: string;
+
+  @IsString()
+  @MaxLength(25)
+  role: string;
 }
