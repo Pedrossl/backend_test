@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserModel } from 'src/models/user.model';
-import { UserSchema } from 'src/schemas/user.schema';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { UserModel } from './user.model';
+import { UserSchema } from './user.schema';
 
 @Controller('user')
 export class UserController {
