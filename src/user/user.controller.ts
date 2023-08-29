@@ -23,6 +23,7 @@ export class UserController {
       ...body,
       password: hashedPassword,
       id: 0,
+      registeredTimes: [],
     };
 
     const user = await this.model.save(userToCreate);
