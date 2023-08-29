@@ -15,8 +15,8 @@ export class UserModel {
   @Column({ length: 500 })
   password: string;
 
-  @Column({ length: 25 })
-  role: string;
+  @Column({ default: 'collaborator' })
+  role?: string;
 
   @OneToMany(() => RegisteredTimeModel, (registeredTime) => registeredTime.user)
   registeredTimes: RegisteredTimeModel[];
