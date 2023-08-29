@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { RegisteredTimeModel } from 'src/registeredTime/registeredTime.model';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserModel {
@@ -16,4 +17,7 @@ export class UserModel {
 
   @Column({ length: 25 })
   role: string;
+
+  @OneToMany(() => RegisteredTimeModel, (registeredTime) => registeredTime.user)
+  registeredTimes: RegisteredTimeModel[];
 }
