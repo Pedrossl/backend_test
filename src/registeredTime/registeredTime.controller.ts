@@ -1,10 +1,15 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { RegisteredTimeService } from './registeredTime.service';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { UserModel } from 'src/user/user.model';
 import { RegisteredTimeModel } from './registeredTime.model';
-import { IsPublic } from 'src/decorators/is-public.decorator';
 
 @Controller()
 export class RegisteredTimeController {
@@ -33,8 +38,11 @@ export class RegisteredTimeController {
   }
 
   @Get('/scorelist')
-  @IsPublic()
-  async findAll(): Promise<{ data: any[] }> {
+  @UseGuards(AuthGuard('jwt'))
+  async findAll(@CurrentUser() user: UserModel): Promise<{ data: any[] }> {
+    if (user.role !== 'admin') {
+      throw new HttpException('User is not admin', HttpStatus.FORBIDDEN);
+    }
     const list = await this.pointRegistrationService.findAllWithUserName();
     return { data: list };
   }
