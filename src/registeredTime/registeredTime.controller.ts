@@ -19,7 +19,7 @@ export class RegisteredTimeController {
 
   @Get('score')
   @UseGuards(AuthGuard('jwt'))
-  async testRouter(
+  async scoreRouter(
     @CurrentUser() user: UserModel,
   ): Promise<{ data: RegisteredTimeModel[] }> {
     const currentTime = new Date();
