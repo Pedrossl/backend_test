@@ -7,6 +7,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RegisteredTimeModel } from './registeredTime/registeredTime.model';
+import { RegisteredTimeModule } from './registeredTime/registeredTime.module';
 
 @Module({
   imports: [
@@ -17,11 +19,12 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
       username: 'root',
       password: '1234',
       database: 'test',
-      entities: [UserModel],
+      entities: [UserModel, RegisteredTimeModel],
       synchronize: true,
     }),
     UserModule,
     AuthModule,
+    RegisteredTimeModule,
   ],
   controllers: [AppController],
   providers: [
