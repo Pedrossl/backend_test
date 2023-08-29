@@ -34,8 +34,8 @@ export class RegisteredTimeController {
 
   @Get('/scorelist')
   @IsPublic()
-  async findAll(): Promise<{ data: RegisteredTimeModel[] }> {
-    const list = await this.pointRegistrationService.findAllWithName();
+  async findAll(): Promise<{ data: any[] }> {
+    const list = await this.pointRegistrationService.findAllWithUserName();
     return { data: list };
   }
 }
