@@ -28,4 +28,14 @@ export class RegisteredTimeService {
       relations: ['user'],
     });
   }
+
+  async findAllWithUserName(): Promise<
+    { id: number; time_registered: Date; user_id: number; user_name: string }[]
+  > {
+    return this.registeredTimeRepository
+      .createQueryBuilder('rt')
+      .select(['rt.id', 'rt.time_registered', 'user.id', 'user.name'])
+      .leftJoin('rt.user', 'user')
+      .getRawMany();
+  }
 }
