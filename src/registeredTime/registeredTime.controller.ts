@@ -32,7 +32,6 @@ export class RegisteredTimeController {
       user,
       currentTime,
     );
-    console.log(registeredTime);
 
     return { data: [registeredTime] };
   }

@@ -20,8 +20,6 @@ export class AuthController {
   @IsPublic()
   @UseGuards(LocalAuthGuard)
   login(@Request() req: AuthRequest) {
-    console.log(req.user);
-
     return this.authService.login(req.user);
   }
 }
