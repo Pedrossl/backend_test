@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserModel } from './user.model';
 import { UserSchema } from './user.schema';
+import { IsPublic } from 'src/decorators/is-public.decorator';
 
 @Controller('user')
 export class UserController {
@@ -11,6 +12,7 @@ export class UserController {
     @InjectRepository(UserModel) private model: Repository<UserModel>,
   ) {}
 
+  @IsPublic()
   @Post()
   async create(@Body() body: UserSchema): Promise<{ data: UserModel }> {
     const saltRounds = 15;
