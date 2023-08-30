@@ -10,6 +10,7 @@ import { RegisteredTimeModel } from './registeredTime/registeredTime.model';
 import { RegisteredTimeModule } from './registeredTime/registeredTime.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModel } from './user/user.model';
+import { GatewayModule } from './gateway/gateway.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -29,6 +30,7 @@ import { UserModel } from './user/user.model';
     UserModule,
     AuthModule,
     RegisteredTimeModule,
+    GatewayModule,
   ],
   controllers: [AppController],
   providers: [

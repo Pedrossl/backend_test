@@ -10,11 +10,13 @@ import { RegisteredTimeService } from './registeredTime.service';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { UserModel } from 'src/user/user.model';
 import { RegisteredTimeModel } from './registeredTime.model';
+import { MyGateway } from 'src/gateway/gateway';
 
 @Controller()
 export class RegisteredTimeController {
   constructor(
     private readonly pointRegistrationService: RegisteredTimeService,
+    private readonly myGateway: MyGateway,
   ) {}
 
   @Get('score')
@@ -32,6 +34,8 @@ export class RegisteredTimeController {
       user,
       currentTime,
     );
+
+    this.myGateway.sendScoreListUpdate();
 
     return { data: [registeredTime] };
   }
