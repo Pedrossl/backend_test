@@ -34,6 +34,22 @@ $ npm install
 
 ## Running the app
 
+1. **Environment Setup**:
+   - Create a `.env` file in the root directory of your project if it doesn't exist.
+   - Add the following content to your `.env` file:
+     exemple:
+   ```env
+   DB_TYPE=mysql
+   DB_HOST=localhost
+   DB_PORT=3306
+   DB_USERNAME=root
+   DB_PASSWORD=1234
+   DB_DATABASE=pontogo
+   TYPEORM_SYNCHRONIZE=true
+   TYPEORM_LOGGING=true
+   TYPEORM_ENTITIES=/entities/*.js,modules//entities/*.js
+   JWT_SECRET='secret'
+
 ```bash
 # development
 $ npm run start
@@ -45,29 +61,31 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Dependencies
 
-```bash
-# unit tests
-$ npm run test
+| Pacote            | Versão      |
+|-------------------|-------------|
+| bcrypt            | ^5.1.1      |
+| class-transformer | ^0.5.1      |
+| class-validator   | ^0.14.0     |
+| mysql2            | ^3.6.0      |
+| passport          | ^0.6.0      |
+| passport-jwt      | ^4.0.1      |
+| passport-local    | ^1.0.0      |
+| typeorm           | ^0.3.17     |
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+## Dependencies Explanation
 
-## Support
+## Dependencies Explanation
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **bcrypt**: Used for encrypting passwords, enhancing the security of user passwords stored in the database by making them more resistant to potential threats.
 
-## Stay in touch
+- **class-transformer** and **class-validator**: Employed to validate and transform data before it's saved to the database. The **class-transformer** facilitates converting objects from one class to another format, easing data manipulation. The **class-validator** equips developers with tools to apply validations to these objects, ensuring data correctness before storage.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **mysql2**: Serves as a driver for interacting with the MySQL database, empowering the application to establish connections, perform queries, and update the MySQL database.
 
-## License
+- **passport**, **passport-jwt**, **passport-local**: These packages play a pivotal role in user authentication and token generation. **Passport** is a widely embraced authentication middleware for Node.js. **Passport-jwt** serves as an extension that supports JSON Web Tokens (JWT) for authentication. **Passport-local** enables authentication using local username and password.
 
-Nest is [MIT licensed](LICENSE).
+- **typeorm**: This is an Object-Relational Mapping (ORM) library, streamlining database interactions by enabling developers to work with databases using object-oriented programming techniques.
+
