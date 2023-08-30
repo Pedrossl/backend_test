@@ -97,4 +97,38 @@ $ npm run start:prod
 
 - **websockets**: In this branch, there is a WebSocket implementation that runs in the background. It's responsible for handling points marked by collaborators and providing real-time updates.
 
+## Insomnia
+You can import the Insomnia workspace configuration from the following file: [`Insomnia_TestBackend.json`](./Insomnia_TestBackend.json).
+
+ /Main
+
+- **Show Users:** [http://localhost:3000/pontogo/user](http://localhost:3000/pontogo/user)  
+  View all users in the system (requires login).
+
+- **Clock In (Button):** [http://localhost:3000/pontogo/clockin](http://localhost:3000/pontogo/clockin)  
+  Clock in (requires login).
+
+- **Clock In List:** [http://localhost:3000/pontogo/clockinlist](http://localhost:3000/pontogo/clockinlist)  
+  Clock-in/out Record (requires admin login).
+
+- **Create User:** [http://localhost:3000/pontogo/user](http://localhost:3000/pontogo/user)  
+  Create a user with name, email, password, and role (default role: collaborator).
+
+- **Login:** [http://localhost:3000/pontogo/login](http://localhost:3000/pontogo/login)  
+  Log in to access the token.
+
+- **Show User Login Status:** [http://localhost:3000/pontogo/me](http://localhost:3000/pontogo/me)  
+  For development purposes only, to track the currently logged-in user (requires login).
+
+/Extra
+This part works with the 'Extra' branch.
+
+- **Enter:** [http://localhost:3000/pontogo/register-entry](http://localhost:3000/pontogo/register-entry)  
+  Entry point.
+
+- **Exit:** [http://localhost:3000/pontogo/register-exit](http://localhost:3000/pontogo/register-exit)  
+  Exit point.
+
+- **Time in Work:** [http://localhost:3000/pontogo/work-seconds/:id](http://localhost:3000/pontogo/work-seconds/:id)  
+  Time worked in seconds for the day.
 
