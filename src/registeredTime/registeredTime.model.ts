@@ -15,6 +15,9 @@ export class RegisteredTimeModel {
   @Column()
   time_registered: Date;
 
+  @Column({ default: false })
+  isEntrance: boolean;
+
   @ManyToOne(() => UserModel)
   @JoinColumn({ name: 'user_id' })
   user: number;

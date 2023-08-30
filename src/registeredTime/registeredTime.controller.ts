@@ -3,6 +3,9 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  InternalServerErrorException,
+  Param,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
@@ -17,23 +20,44 @@ export class RegisteredTimeController {
     private readonly pointRegistrationService: RegisteredTimeService,
   ) {}
 
-  @Get('score')
+  @Post('register-entry')
   @UseGuards(AuthGuard('jwt'))
-  async scoreRouter(
+  async registerEntry(
     @CurrentUser() user: UserModel,
-  ): Promise<{ data: RegisteredTimeModel[] }> {
+  ): Promise<{ data: RegisteredTimeModel }> {
     const currentTime = new Date();
 
     if (!user) {
-      throw new Error(`User not found`);
+      throw new InternalServerErrorException(`User not found`);
     }
 
     const registeredTime = await this.pointRegistrationService.registerTime(
       user,
       currentTime,
+      true,
     );
 
-    return { data: [registeredTime] };
+    return { data: registeredTime };
+  }
+
+  @Post('register-exit')
+  @UseGuards(AuthGuard('jwt'))
+  async registerExit(
+    @CurrentUser() user: UserModel,
+  ): Promise<{ data: RegisteredTimeModel }> {
+    const currentTime = new Date();
+
+    if (!user) {
+      throw new InternalServerErrorException(`User not found`);
+    }
+
+    const registeredTime = await this.pointRegistrationService.registerTime(
+      user,
+      currentTime,
+      false,
+    );
+
+    return { data: registeredTime };
   }
 
   @Get('/scorelist')
@@ -44,5 +68,14 @@ export class RegisteredTimeController {
     }
     const list = await this.pointRegistrationService.findAllWithUserName();
     return { data: list };
+  }
+  @Get('work-seconds/:userId')
+  @UseGuards(AuthGuard('jwt'))
+  async calculateWorkSecondsForUser(
+    @Param('userId') userId: number,
+  ): Promise<{ date: Date; workSeconds: number }[]> {
+    const workSeconds =
+      await this.pointRegistrationService.calculateWorkSecondsForUser(userId);
+    return workSeconds;
   }
 }
