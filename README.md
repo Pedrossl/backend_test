@@ -49,6 +49,7 @@ $ npm install
    TYPEORM_LOGGING=true
    TYPEORM_ENTITIES=/entities/*.js,modules//entities/*.js
    JWT_SECRET='secret'
+   ```
 
 ```bash
 # development
@@ -63,17 +64,16 @@ $ npm run start:prod
 
 ## Dependencies
 
-| Pacote            | Versão      |
-|-------------------|-------------|
-| bcrypt            | ^5.1.1      |
-| class-transformer | ^0.5.1      |
-| class-validator   | ^0.14.0     |
-| mysql2            | ^3.6.0      |
-| passport          | ^0.6.0      |
-| passport-jwt      | ^4.0.1      |
-| passport-local    | ^1.0.0      |
-| typeorm           | ^0.3.17     |
-
+| Pacote            | Versão  |
+| ----------------- | ------- |
+| bcrypt            | ^5.1.1  |
+| class-transformer | ^0.5.1  |
+| class-validator   | ^0.14.0 |
+| mysql2            | ^3.6.0  |
+| passport          | ^0.6.0  |
+| passport-jwt      | ^4.0.1  |
+| passport-local    | ^1.0.0  |
+| typeorm           | ^0.3.17 |
 
 ## Dependencies Explanation
 
@@ -91,16 +91,17 @@ $ npm run start:prod
 
 ## Branches
 
-- **master**: The main branch containing the core functionality of your project.
+- **master**: The main branch containing the core functionality of my project.
 
 - **extra**: This branch includes a feature for counting the working seconds of each collaborator
 
 - **websockets**: In this branch, there is a WebSocket implementation that runs in the background. It's responsible for handling points marked by collaborators and providing real-time updates.
 
 ## Insomnia
+
 You can import the Insomnia workspace configuration from the following file: [`Insomnia_TestBackend.json`](./Insomnia_TestBackend.json).
 
- /Main
+/Main
 
 - **Show Users:** [http://localhost:3000/pontogo/user](http://localhost:3000/pontogo/user)  
   View all users in the system (requires login).
@@ -131,4 +132,3 @@ This part works with the 'Extra' branch.
 
 - **Time in Work:** [http://localhost:3000/pontogo/work-seconds/:id](http://localhost:3000/pontogo/work-seconds/:id)  
   Time worked in seconds for the day.
-
