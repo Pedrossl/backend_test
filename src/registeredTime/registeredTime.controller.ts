@@ -17,9 +17,9 @@ export class RegisteredTimeController {
     private readonly pointRegistrationService: RegisteredTimeService,
   ) {}
 
-  @Get('score')
+  @Get('clockin')
   @UseGuards(AuthGuard('jwt'))
-  async scoreRouter(
+  async clockinRouter(
     @CurrentUser() user: UserModel,
   ): Promise<{ data: RegisteredTimeModel[] }> {
     const currentTime = new Date();
@@ -36,7 +36,7 @@ export class RegisteredTimeController {
     return { data: [registeredTime] };
   }
 
-  @Get('/scorelist')
+  @Get('/clockinlist')
   @UseGuards(AuthGuard('jwt'))
   async findAll(@CurrentUser() user: UserModel): Promise<{ data: any[] }> {
     if (user.role !== 'admin') {
