@@ -132,3 +132,6 @@ This part works with the 'Extra' branch.
 
 - **Time in Work:** [http://localhost:3000/pontogo/work-seconds/:id](http://localhost:3000/pontogo/work-seconds/:id)  
   Time worked in seconds for the day.
+
+## Warning
+- I used auto-incrementing IDs instead of UUIDs for the sake of demonstrations and testing.
