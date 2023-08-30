@@ -9,7 +9,7 @@ export class UserModel {
   @Column({ length: 100 })
   name: string;
 
-  @Column({ length: 70 })
+  @Column({ length: 70, unique: true })
   email: string;
 
   @Column({ length: 500 })

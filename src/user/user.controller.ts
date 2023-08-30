@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  InternalServerErrorException,
+  Post,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -14,20 +21,38 @@ export class UserController {
 
   @IsPublic()
   @Post()
+  @IsPublic()
+  @Post()
   async create(@Body() body: UserSchema): Promise<{ data: UserModel }> {
-    const saltRounds = 15;
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hashedPassword = bcrypt.hashSync(body.password, salt);
+    try {
+      const existingUser = await this.model
+        .createQueryBuilder('user')
+        .where('user.email = :email', { email: body.email })
+        .getOne();
 
-    const userToCreate: UserModel = {
-      ...body,
-      password: hashedPassword,
-      id: 0,
-      registeredTimes: [],
-    };
+      if (existingUser) {
+        throw new BadRequestException('Email already exists');
+      }
 
-    const user = await this.model.save(userToCreate);
-    return { data: user };
+      const saltRounds = 15;
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hashedPassword = bcrypt.hashSync(body.password, salt);
+
+      const userToCreate: UserModel = {
+        ...body,
+        password: hashedPassword,
+        id: 0,
+        registeredTimes: [],
+      };
+
+      const user = await this.model.save(userToCreate);
+      return { data: user };
+    } catch (error) {
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new InternalServerErrorException(error);
+    }
   }
 
   @Get()
