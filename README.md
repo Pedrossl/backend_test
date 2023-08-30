@@ -89,3 +89,12 @@ $ npm run start:prod
 
 - **typeorm**: This is an Object-Relational Mapping (ORM) library, streamlining database interactions by enabling developers to work with databases using object-oriented programming techniques.
 
+## Branches
+
+- **master**: The main branch containing the core functionality of your project.
+
+- **extra**: This branch includes a feature for counting the working seconds of each collaborator
+
+- **websockets**: In this branch, there is a WebSocket implementation that runs in the background. It's responsible for handling points marked by collaborators and providing real-time updates.
+
+
